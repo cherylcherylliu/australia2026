@@ -20,18 +20,40 @@ function escapeHtml(str) {
 
 function getTimelineIcon(title, note) {
   const text = `${title} ${note}`.toLowerCase();
-  if (text.includes("住宿") || text.includes("check-in") || text.includes("入住") || text.includes("hotel") || text.includes("ibis")) return "home";
+
+  // Scenic / nature spots should be detected before flight keywords,
+  // because names like Loch Ard Gorge include "gorge" and may otherwise fall through oddly.
+  if (text.includes("twelve apostles") || text.includes("gibson steps") || text.includes("lo震") || text.includes("loch ard gorge") || text.includes("gorge precinct") || text.includes("the grotto") || text.includes("london bridge") || text.includes("split point") || text.includes("lighthouse") || text.includes("eagle rock") || text.includes("bay of islands") || text.includes("waterfront") || text.includes("lookout") || text.includes("大洋路")) return "landscape";
+  if (text.includes("beach") || text.includes("st kilda") || text.includes("海港") || text.includes("海邊")) return "waves";
+  if (text.includes("aurora") || text.includes("極光")) return "nightlight";
+  if (text.includes("state library") || text.includes("library") || text.includes("art gallery") || text.includes("acmi") || text.includes("museum") || text.includes("圖書館") || text.includes("美術館") || text.includes("博物館")) return "museum";
+  if (text.includes("battery point") || text.includes("sal amanca") || text.includes("salamanca") || text.includes("arthur circus") || text.includes("kelly") || text.includes("historic") || text.includes("歷史")) return "location_on";
+  if (text.includes("park") || text.includes("garden") || text.includes("botanic")) return "park";
+
+  // Food / drinks.
+  if (text.includes("coffee") || text.includes("cafe") || text.includes("flat white") || text.includes("good measure") || text.includes("dame") || text.includes("jackman") || text.includes("brunetti") || text.includes("bakery") || text.includes("pastries") || text.includes("可頌") || text.includes("咖啡") || text.includes("甜點")) return "local_cafe";
+  if (text.includes("晚餐") || text.includes("午餐") || text.includes("早餐") || text.includes("pho") || text.includes("tacos") || text.includes("lunch") || text.includes("dinner") || text.includes("熱湯") || text.includes("fish frenzy") || text.includes("restaurant") || text.includes("tonka") || text.includes("wah wah gee") || text.includes("bowltiful") || text.includes("dodee")) return "restaurant";
+  if (text.includes("ice cream") || text.includes("yo-chi") || text.includes("yoghurt") || text.includes("冰淇淋")) return "icecream";
+
+  // Shopping / errands.
+  if (text.includes("chemist") || text.includes("pharmacy") || text.includes("藥局") || text.includes("藥妝")) return "local_pharmacy";
+  if (text.includes("coles") || text.includes("woolworths") || text.includes("supermarket") || text.includes("補給")) return "local_grocery_store";
+  if (text.includes("market") || text.includes("shopping") || text.includes("買") || text.includes("be marsupial") || text.includes("souvenir") || text.includes("rundle") || text.includes("emporium") || text.includes("melbourne central") || text.includes("伴手禮") || text.includes("採買")) return "shopping_bag";
+
+  // Transport and logistics.
+  if (text.includes("住宿") || text.includes("check-in") || text.includes("入住") || text.includes("hotel") || text.includes("ibis") || text.includes("bounce") || text.includes("apartment") || text.includes("motor inn")) return "home";
   if (text.includes("yoga")) return "self_improvement";
-  if (text.includes("晚餐") || text.includes("午餐") || text.includes("早餐") || text.includes("cafe") || text.includes("coffee") || text.includes("pho") || text.includes("tacos") || text.includes("lunch") || text.includes("dinner") || text.includes("熱湯")) return "restaurant";
   if (text.includes("flight") || text.includes("jq") || text.includes("ci") || text.includes("航班")) return "flight_takeoff";
   if (text.includes("bus") || text.includes("linksa") || text.includes("skybus") || text.includes("j1") || text.includes("j2")) return "directions_bus";
   if (text.includes("tram") || text.includes("metro") || text.includes("機捷")) return "tram";
-  if (text.includes("car") || text.includes("取車") || text.includes("還車") || text.includes("drive")) return "directions_car";
-  if (text.includes("market") || text.includes("shopping") || text.includes("coles") || text.includes("chemist") || text.includes("藥局") || text.includes("補給") || text.includes("買")) return "shopping_bag";
-  if (text.includes("koala") || text.includes("wombat") || text.includes("wildlife") || text.includes("企鵝")) return "pets";
+  if (text.includes("car") || text.includes("取車") || text.includes("還車") || text.includes("drive") || text.includes("加油")) return "directions_car";
   if (text.includes("ferry")) return "directions_boat";
   if (text.includes("高鐵") || text.includes("train")) return "train";
-  return "place";
+
+  // Wildlife.
+  if (text.includes("koala") || text.includes("wombat") || text.includes("wildlife") || text.includes("企鵝") || text.includes("penguin") || text.includes("kangaroo") || text.includes("tasmanian devil")) return "pets";
+
+  return "location_on";
 }
 
 function scrollToPageTop() {

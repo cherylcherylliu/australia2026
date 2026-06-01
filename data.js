@@ -208,7 +208,7 @@ const tripDays = [
     "label": "6/5",
     "title": "Melbourne Classic Market + Coffee Day",
     "city": "Melbourne",
-    "theme": "State Library、Good Measure、QVM、Pho、shopping、Future Life Check。",
+    "theme": "State Library、Good Measure、QVM、Pho、shopping、回住宿整理。",
     "accommodation": "Bounce Melbourne",
     "reminders": [
       "住宿有早餐，Lune 改為 Backup，不排第二份早餐。",
@@ -243,8 +243,8 @@ const tripDays = [
       ],
       [
         "17:15",
-        "Future Life Check",
-        "交通、藥局、超市、安全感"
+        "回 Bounce 休息 / 整理購物",
+        "放購物、補水、充電，晚上不再硬排行程"
       ]
     ]
   },
@@ -472,7 +472,7 @@ const tripDays = [
     "theme": "State Library、South Melbourne Market、Be Marsupial、Fitzroy Coffee Walk、Winter Night Market。",
     "accommodation": "ibis Melbourne Central",
     "reminders": [
-      "採用新版：刪除 St Kilda / Acland Street，避免冬天海邊太冷與繞路。",
+      "今天以 Be Marsupial、Fitzroy Coffee Walk、Winter Night Market 為主，不排海邊吹風。",
       "South Melbourne Market 快速巡場，Be Marsupial 是主任務。",
       "Winter Night Market 短版，20:30 前回 ibis。"
     ],
@@ -1118,19 +1118,12 @@ const timelineNavigation = {
     "url": "https://www.google.com/maps/dir/?api=1&origin=South+Melbourne+Market&destination=Be+Marsupial+Melbourne&travelmode=transit",
     "note": "買 koala 娃娃主線。"
   },
-  "6/10|Acland Street café": {
-    "mode": "Transit",
-    "icon": "tram",
-    "label": "Be Marsupial → Acland Street",
-    "url": "https://www.google.com/maps/dir/?api=1&origin=Be+Marsupial+Melbourne&destination=Acland+Street+St+Kilda&travelmode=transit",
-    "note": "St Kilda 超出 Free Tram Zone。"
-  },
   "6/10|Winter Night Market": {
     "mode": "Transit",
     "icon": "tram",
-    "label": "St Kilda → Winter Night Market",
-    "url": "https://www.google.com/maps/dir/?api=1&origin=St+Kilda+Beach&destination=Queen+Victoria+Market&travelmode=transit",
-    "note": "短版安全策略，20:20 前回 ibis。"
+    "label": "ibis → Queen Victoria Market Winter Night Market",
+    "url": "https://www.google.com/maps/search/?api=1&query=Queen+Victoria+Market+Winter+Night+Market",
+    "note": "熱食、亞洲小吃、熱甜點；20:30 前回 ibis。"
   },
   "6/11|ibis Melbourne Central → Southern Cross SkyBus": {
     "mode": "Walk / Uber",
@@ -1409,7 +1402,7 @@ Object.assign(timelineNavigation, {
   "6/5|Queen Victoria Market": { mode: "Transit / Walk", icon: "tram", label: "Good Measure → Queen Victoria Market", url: "https://www.google.com/maps/dir/?api=1&origin=Good+Measure+Melbourne&destination=Queen+Victoria+Market&travelmode=transit", note: "白天市場，不與 6/10 Winter Night Market 混淆。" },
   "6/5|Pho Thin / Pho Nom": { mode: "Walk / Tram", icon: "restaurant", label: "QVM → Pho Thin / Pho Nom", url: "https://www.google.com/maps/search/?api=1&query=Pho+Thin+Pho+Nom+Melbourne+CBD", note: "熱湯河粉午餐。" },
   "6/5|CBD Shopping": { mode: "Walk", icon: "shopping_bag", label: "Pho → Emporium / Melbourne Central", url: "https://www.google.com/maps/dir/?api=1&origin=Queen+Victoria+Market&destination=Emporium+Melbourne&waypoints=Melbourne+Central&travelmode=walking", note: "正式 shopping；買太多先回住宿放。" },
-  "6/5|Future Life Check": { mode: "Walk", icon: "fact_check", label: "CBD practical check", url: "https://www.google.com/maps/search/?api=1&query=pharmacy+supermarket+near+Melbourne+Central", note: "確認交通、藥局、超市與安全感。" },
+  "6/5|回 Bounce 休息 / 整理購物": { mode: "Walk / Tram", icon: "home", label: "Melbourne Central → Bounce Melbourne", url: "https://www.google.com/maps/dir/?api=1&origin=Melbourne+Central&destination=Bounce+Melbourne+250+Flinders+Street&travelmode=transit", note: "放購物、補水、充電；不要把內心觀察寫成行程。" },
 
   "6/6|Bounce 早餐": { mode: "Prep", icon: "restaurant", label: "Breakfast before tour", note: "一日遊無附餐，早餐吃飽並帶保暖用品。" },
   "6/6|Explore Australia pickup": { mode: "Tour", icon: "directions_bus", label: "Regent Theatre pickup", note: "09:20 前抵達，找紫色巴士或 Explore Australia Tours logo。" },
