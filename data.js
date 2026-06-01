@@ -1,18 +1,774 @@
 const tripDays = [
-  { label: "6/1", title: "Departure Day", city: "Taiwan → Melbourne", theme: "高鐵、機捷、TPE T2、CI0057。", accent: "Departure", accommodation: "In flight｜CI0057", reminders: ["確認護照、ETA、駕照、國際駕照、澳幣、信用卡。", "攜帶食品入境澳洲需申報。"], timeline: [["18:55", "從家裡出發", "前往高鐵彰化站"], ["19:24", "高鐵 850 彰化 → 桃園", "20:18 抵達"], ["20:32", "機捷 A18 → A13", "前往 TPE T2"], ["23:30", "CI0057 TPE → MEL", "6/2 10:40 抵達 MEL"]] },
-  { label: "6/2", title: "Arrival + Hobart Car Pick-up", city: "Melbourne / Hobart", theme: "入境澳洲、重新托運轉 JQ707、Hobart 取車。", accent: "Transfer Warning", accommodation: "Little Island Apartments", reminders: ["CI0057 抵達 MEL T2 後，必須入境、領華航托運行李、食品申報。", "推行李到 T4 Domestic，Jetstar JQ707 重新 check-in / bag drop。", "Hertz 取車確認 MDW、excess、windscreen、tyres、roadside assistance。"], timeline: [["10:40", "CI0057 抵達 MEL T2", "入境、領行李、食品申報"], ["12:15", "MEL T2 → T4", "推行李轉 Jetstar 國內線"], ["12:35", "Jetstar 重新托運", "JQ707 bag drop / security"], ["14:35", "JQ707 MEL → HBA", "15:50 抵達 Hobart"], ["16:30", "Hertz Hobart Airport 取車", "確認保險與車況拍照"], ["18:05", "Eastlands / Rosny Park 補給", "買 6/3 早餐、午餐、水"], ["19:20", "入住 Little Island Apartments", "免費私人停車"]] },
-  { label: "6/3", title: "Maria Island + Wombat Day", city: "Tasmania", theme: "Maria Island 看 wombat，晚上視天氣 Aurora Check。", accent: "Wildlife", accommodation: "Little Island Apartments", reminders: ["10:00 ferry，09:15 前到 Maria Island Gateway check-in。", "島上沒有商店，水、午餐、零食都要自備。", "看 wombat 保持 2–5 m，不摸、不餵、不追。"], timeline: [["06:45", "起床與早餐", "整理裝備"], ["07:20", "Hobart → Triabunna", "抓交通緩衝"], ["10:00", "Triabunna → Maria Island", "Encounter Maria Ferry"], ["11:10", "Wombat Route", "Darlington、草地區、Cement Works"], ["14:30", "Maria Island → Triabunna", "回程 ferry"], ["15:20", "Triabunna → Little Island Apartments", "回住宿休息"], ["17:30", "Eastlands Food Court", "晚餐備案：Banjo's Bakery Cafe"], ["20:00", "Aurora Check", "視天氣與體力決定"]] },
-  { label: "6/4", title: "Hobart Half-Day + Return to Melbourne", city: "Hobart / Melbourne", theme: "Hobart 經典悠閒半日，還車後飛回 Melbourne。", accommodation: "Bounce Melbourne", reminders: ["6/4 週四沒有 Salamanca Market。", "抵達 MEL 後建議 Uber XL / 7-seater / Maxi Taxi。"], timeline: [["10:00", "Battery Point", "Kelly’s Steps、歷史街區"], ["12:00", "Salamanca Place / Waterfront", "不排 MONA / Mt Wellington"], ["16:30", "Hertz 還車", "拍油量、里程、車況"], ["18:10", "JQ708 HBA → MEL", "19:35 抵達 Melbourne"], ["21:30", "輕食晚餐", "熱湯 / 簡單外帶"]] },
-  { label: "6/5", title: "Melbourne Classic Food + City Day", city: "Melbourne", theme: "Lune、特色咖啡、QVM、Pho、shopping、Future Life Check。", accommodation: "Bounce Melbourne", reminders: ["以步行 + Free Tram Zone 為主。", "正式 shopping：Emporium、Melbourne Central、Bourke Street Mall。"], timeline: [["08:25", "Lune Croissanterie", "可頌主線"], ["09:35", "Dame", "特色咖啡"], ["10:35", "Queen Victoria Market", "白天市場"], ["12:10", "Pho Thin / Pho Nom", "熱湯河粉午餐"], ["14:45", "CBD Shopping", "Emporium / Melbourne Central"], ["17:15", "Future Life Check", "交通、藥局、超市、安全感"]] },
-  { label: "6/6", title: "Puffing Billy + Penguin Wildlife Tour", city: "Melbourne / Phillip Island", theme: "GetYourGuide 一日遊，無附餐，早餐吃飽與保暖。", accommodation: "Bounce Melbourne", reminders: ["09:20 前到 Regent Theatre 集合。", "今日無附餐，帶水、能量棒、香蕉。", "晚上 Phillip Island 很冷，早上就帶保暖用品。"], timeline: [["08:15", "Bounce 早餐", "今日務必吃飽"], ["09:10", "Bounce → Regent Theatre", "191 Collins St"], ["09:35", "Explore Australia pickup", "找紫色巴士或 logo"], ["午餐", "Railway Café / 自備輕食", "依導遊停留時間"], ["傍晚", "Penguin Parade Visitor Centre", "先吃再看企鵝"], ["日落後", "Penguin Parade", "Penguins Plus"]] },
-  { label: "6/7", title: "Great Ocean Road Day 1", city: "Melbourne → Port Campbell", theme: "SIXT 取車、大洋路、Lorne 午餐、Kennett River koala。", accommodation: "Loch Ard Motor Inn", accent: "Driving", reminders: ["從 CBD / Docklands 開出來注意 tram、單行道與車道。", "不硬排 Twelve Apostles sunset。"], timeline: [["08:00", "SIXT 取車", "確認保險、車況拍照"], ["10:55", "Great Ocean Road Chocolaterie", "熱飲、上廁所、補給"], ["12:20", "Split Point Lighthouse", "Aireys Inlet"], ["13:40", "Grand Pacific Hotel Lorne", "午餐"], ["15:15", "Kennett River", "找野生 koala"], ["17:45", "Check-in Loch Ard Motor Inn", "Port Campbell"], ["18:30", "Waves Cafe", "晚餐"]] },
-  { label: "6/8", title: "Great Ocean Road Day 2", city: "Port Campbell → Geelong", theme: "Twelve Apostles、Shipwreck Coast、Colac 休息、Geelong Waterfront。", accommodation: "Holiday Inn & Suites Geelong", accent: "Driving", reminders: ["Twelve Apostles 保留 Day 2，避免 6/7 摸黑折返。", "Colac 午餐 + 廁所休息，下午走內陸往 Geelong。"], timeline: [["08:15", "Twelve Apostles / Gibson Steps", "早晨重點"], ["09:30", "Loch Ard Gorge precinct", "視步道狀態"], ["10:20", "Grassroots Deli Cafe", "咖啡 / brunch"], ["11:45", "The Grotto / London Bridge", "依天氣選 2–3 個"], ["12:30", "Timboon Fine Ice Cream", "小停靠 10–15 分鐘"], ["14:00", "Colac Lunch + Toilet", "熱食、咖啡、駕駛休息"], ["16:30", "Holiday Inn Geelong Check-in", "先放行李休息"], ["18:00", "Geelong Waterfront", "黃昏散步，不硬等夜景"], ["19:00", "Wah Wah Gee", "Geelong local produce + seafood"]] },
-  { label: "6/9", title: "Geelong → Melbourne｜Return Car + Solo Night", city: "Geelong / Melbourne", theme: "先寄放行李、再還車、shopping、旅伴 21:50 CI58 返台、Cheryl solo night。", accommodation: "ibis Melbourne Central", reminders: ["先到 ibis 寄放行李，再去 SIXT 還車。", "SIXT 還車點：Shop 10, 99 Spencer St，Docklands；進 Care Park 後右轉。", "旅伴 19:15 出發 MEL T2，21:50 CI58 回台灣。"], timeline: [["09:00", "Holiday Inn Geelong 早餐", "確認所有行李與護照"], ["10:00", "Geelong → ibis Melbourne Central", "先卸行李"], ["11:30", "加油 + 還車前拍照", "油量、里程、四面車身"], ["13:00", "SIXT return", "Shop 10, 99 Spencer St"], ["14:00", "Melbourne Central / Emporium", "shopping"], ["17:30", "Tonka", "Butter Chicken、Garlic Naan、Masala Chai"], ["18:45", "回 ibis 領行李", "旅伴離隊流程"], ["19:15", "旅伴出發去 MEL Airport", "Uber XL / Maxi Taxi"], ["20:00", "Cheryl solo night", "小點心、熱飲、整理戰利品"]] },
-  { label: "6/10", title: "Solo Melbourne Koala Souvenir + Coffee Walk", city: "Melbourne", theme: "State Library、South Melbourne Market、Be Marsupial、Fitzroy Coffee Walk、Winter Night Market。", accommodation: "ibis Melbourne Central", reminders: ["採用新版：刪除 St Kilda / Acland Street，避免冬天海邊太冷與繞路。", "Winter Night Market 短版，20:30 前回 ibis。"], timeline: [["10:00", "State Library Victoria", "室內、安全、經典景點"], ["11:30", "South Melbourne Market", "快速巡場，45–60 分鐘"], ["13:15", "Be Marsupial", "買 koala 娃娃主線"], ["14:30", "Fitzroy Coffee Walk", "Good Measure / Tone Coffee / Overlay 擇一"], ["16:30", "回 CBD / ibis 休息", "整理戰利品、充電、喝水"], ["18:00", "Winter Night Market", "熱食、亞洲小吃、熱甜點"], ["20:30", "回 ibis", "早點休息"]] },
-  { label: "6/11", title: "Melbourne → Adelaide", city: "Melbourne / Adelaide", theme: "SkyBus、JQ772、J1/J2 到 ibis、輕鬆恢復、Coles 補給。", accommodation: "ibis Adelaide", accent: "Adelaide Start", reminders: ["6/10 晚上先買 SkyBus one-way ticket 並截圖。", "JQ772：手提 7 kg，托運 20 kg。", "晚上 Coles Rundle Place 買 6/12 lunch pack。"], timeline: [["07:20", "ibis Melbourne Central → MEL T4", "SkyBus 主選；行李重可短程 Uber 到 Southern Cross"], ["08:00", "SkyBus → MEL T4", "Melbourne City Express"], ["10:30", "JQ772 MEL → ADL", "11:30 抵達"], ["12:10", "ADL Airport → ibis Adelaide", "J1 / J2 bus 主選"], ["14:00", "Check-in + rest", "若順利才考慮 yoga"], ["16:45", "Optional Restore Yoga", "Human.Kind City Studio，optional"], ["18:15", "Hecho en Mexico", "tacos light dinner；胃不舒服改熱湯"], ["19:15", "Coles Rundle Place", "買 6/12 lunch pack"]] },
-  { label: "6/12", title: "Gorge Wildlife Park + Koala Holding", city: "Adelaide / Cudlee Creek / Hahndorf", theme: "11:30 Koala Holding 固定，早上直奔動物園，下午再視體力去 Hahndorf。", accommodation: "ibis Adelaide", accent: "Koala", reminders: ["General Admission 需要另外購買。", "Koala Holding 11:30；Adelaide 預報 32°C 以上可能取消。", "LinkSA 不到門口，下車後步行約 300 m 上坡到園區。"], timeline: [["07:45", "離開 ibis Adelaide", "前往 Tea Tree Plaza 轉 LinkSA"], ["09:00", "LinkSA 1102", "Tea Tree Plaza → Cudlee Creek"], ["09:45", "入園 / 買 General Admission", "確認 Koala Holding 集合點"], ["11:30", "Koala Holding", "主線任務"], ["12:20", "自備 lunch pack / Kiosk", "先洗手"], ["13:00", "慢慢看其他動物", "wombat、Tasmanian devil、birds"], ["14:45", "離園走回 Cudlee Creek Hall", "不要壓線"], ["15:03", "LinkSA 回 Tea Tree Plaza", "15:35 抵達"], ["15:45", "Tea Tree Plaza → ibis Adelaide", "Adelaide Metro 回 CBD，補交通閉環"], ["17:30", "Adelaide Pho / Phonatic / Ajisen", "熱湯晚餐"], ["備案", "Hahndorf Walking Route", "若體力好改去 Hahndorf：The Haus、German Village Shop、German Cake Shop、Beerenberg"]] },
-  { label: "6/13", title: "Adelaide City Slow Day", city: "Adelaide", theme: "Central Market、Art Gallery、Rundle Mall、藥妝、Coles 主採買。", accommodation: "ibis Adelaide", accent: "City Day", reminders: ["Central Market 放早上，6/14 週日不開。", "購物以靠住宿、少提重物為原則。", "晚上整理行李：液體、膏狀、重物放托運。"], timeline: [["08:30", "Adelaide Central Market", "早餐、咖啡、local food"], ["10:45", "Art Gallery of South Australia", "室內慢慢看"], ["12:30", "Rundle Mall", "購物、藥妝、書店、伴手禮"], ["14:30", "回 ibis 放東西 / 休息", "充電、喝水"], ["16:30", "Chemist Warehouse Pulteney", "藥妝、Grahams、簡單補給"], ["18:00", "Dinner", "熱食優先"], ["19:30", "Coles Rundle Place", "食品伴手禮與 6/14 補給"], ["20:30", "回 ibis 整理行李", "液體、膏狀、重物放托運"]] },
-  { label: "6/14", title: "Final Shopping + Transfer Day", city: "Adelaide / Melbourne Airport", theme: "最後小補買、J1/J2 去 ADL、JQ775、MEL T4 領行李、T2 華航重托運、貴賓室。", accommodation: "ibis Adelaide checkout", accent: "Transfer Day", reminders: ["JQ775：手提 7 kg，托運 30 kg。", "JQ775 抵達 MEL T4 後，必須領 Jetstar 托運行李。", "再推行李到 T2 International 找華航重新托運。"], timeline: [["07:30", "早餐", "不跑遠"], ["08:45", "最後小補買", "Coles Rundle Place / Chemist Pulteney，只小補買"], ["09:45", "回 ibis 整理行李", "液體、膏狀放托運"], ["10:30", "Check-out ibis Adelaide", "不壓 11:00"], ["11:00", "J1 / J2 bus → ADL Airport", "目的地設 Adelaide Airport Passenger Terminal"], ["12:00", "Jetstar bag drop / security", "JQ775 13:40 起飛"], ["13:40", "JQ775 ADL → MEL", "15:30 抵達 MEL T4"], ["15:30", "領 Jetstar 托運行李", "不要直接去 T2"], ["16:15", "T4 → T2 International", "推行李移動"], ["17:15", "China Airlines 重新托運", "CI0058 MEL → TPE"], ["19:15", "T2 lounge / dinner / rest", "完成出境後再休息"], ["21:50", "CI0058 MEL → TPE", "6/15 05:15 抵達台灣"]] }
+  {
+    "label": "6/1",
+    "title": "Departure Day",
+    "city": "Taiwan → Melbourne",
+    "theme": "高鐵、機捷、TPE T2、CI0057。",
+    "accent": "Departure",
+    "accommodation": "In flight｜CI0057",
+    "reminders": [
+      "確認護照、ETA、駕照、國際駕照、澳幣、信用卡。",
+      "攜帶食品入境澳洲需申報。"
+    ],
+    "timeline": [
+      [
+        "18:55",
+        "從家裡出發",
+        "前往高鐵彰化站"
+      ],
+      [
+        "19:24",
+        "高鐵 850 彰化 → 桃園",
+        "20:18 抵達"
+      ],
+      [
+        "20:32",
+        "機捷 A18 → A13",
+        "前往 TPE T2"
+      ],
+      [
+        "23:30",
+        "CI0057 TPE → MEL",
+        "6/2 10:40 抵達 MEL"
+      ]
+    ]
+  },
+  {
+    "label": "6/2",
+    "title": "Arrival + Hobart Car Pick-up",
+    "city": "Melbourne / Hobart",
+    "theme": "入境澳洲、重新托運轉 JQ707、Hobart 取車。",
+    "accent": "Transfer Warning",
+    "accommodation": "Little Island Apartments",
+    "reminders": [
+      "CI0057 抵達 MEL T2 後，必須入境、領華航托運行李、食品申報。",
+      "推行李到 T4 Domestic，Jetstar JQ707 重新 check-in / bag drop。",
+      "Hertz 取車確認 MDW、excess、windscreen、tyres、roadside assistance。",
+      "晚上 Aurora 只做天氣與體力判斷；太累就直接休息。"
+    ],
+    "timeline": [
+      [
+        "10:40",
+        "CI0057 抵達 MEL T2",
+        "入境、領行李、食品申報"
+      ],
+      [
+        "12:15",
+        "MEL T2 → T4",
+        "推行李轉 Jetstar 國內線"
+      ],
+      [
+        "12:35",
+        "Jetstar 重新托運",
+        "JQ707 bag drop / security"
+      ],
+      [
+        "14:35",
+        "JQ707 MEL → HBA",
+        "15:50 抵達 Hobart"
+      ],
+      [
+        "16:30",
+        "Hertz Hobart Airport 取車",
+        "確認保險與車況拍照"
+      ],
+      [
+        "18:05",
+        "Eastlands / Rosny Park 補給",
+        "買 6/3 早餐、午餐、水"
+      ],
+      [
+        "19:20",
+        "入住 Little Island Apartments",
+        "免費私人停車"
+      ],
+      [
+        "20:00",
+        "Aurora Options",
+        "Bellerive Beach / Kangaroo Bluff / Goat Bluff，視天氣與體力"
+      ]
+    ]
+  },
+  {
+    "label": "6/3",
+    "title": "Maria Island + Wombat Day",
+    "city": "Tasmania",
+    "theme": "Maria Island 看 wombat，晚上視天氣 Aurora Check。",
+    "accent": "Wildlife",
+    "accommodation": "Little Island Apartments",
+    "reminders": [
+      "10:00 ferry，09:15 前到 Maria Island Gateway check-in。",
+      "島上沒有商店，水、午餐、零食都要自備。",
+      "看 wombat 保持 2–5 m，不摸、不餵、不追。",
+      "14:00 前開始回碼頭，14:30 ferry 不壓線。"
+    ],
+    "timeline": [
+      [
+        "06:45",
+        "起床與早餐",
+        "整理裝備"
+      ],
+      [
+        "07:20",
+        "Hobart → Triabunna",
+        "抓交通緩衝"
+      ],
+      [
+        "10:00",
+        "Triabunna → Maria Island",
+        "Encounter Maria Ferry"
+      ],
+      [
+        "11:10",
+        "Wombat Route",
+        "Recommended Route / Easy Route / Fossil Cliffs Optional"
+      ],
+      [
+        "14:30",
+        "Maria Island → Triabunna",
+        "回程 ferry"
+      ],
+      [
+        "15:20",
+        "Triabunna → Little Island Apartments",
+        "回住宿休息"
+      ],
+      [
+        "17:30",
+        "Eastlands Food Court",
+        "Dinner Options：Eastlands / Banjo's / Takeaway"
+      ],
+      [
+        "20:00",
+        "Aurora Check",
+        "Bellerive / Kangaroo Bluff / Goat Bluff，視雲量與體力"
+      ]
+    ]
+  },
+  {
+    "label": "6/4",
+    "title": "Hobart Half-Day + Return to Melbourne",
+    "city": "Hobart / Melbourne",
+    "theme": "Battery Point、Jackman & McRoss、Salamanca、Waterfront，還車後飛回 Melbourne。",
+    "accommodation": "Bounce Melbourne",
+    "reminders": [
+      "6/4 週四沒有 Salamanca Market。",
+      "15:15–15:30 離開 Hobart 市區，預留加油與還車。",
+      "抵達 MEL 後建議 Uber XL / 7-seater / Maxi Taxi。"
+    ],
+    "timeline": [
+      [
+        "09:30",
+        "Check-out Little Island Apartments",
+        "不要壓 10:00"
+      ],
+      [
+        "10:00",
+        "Battery Point",
+        "Arthur Circus、Kelly’s Steps、歷史街區"
+      ],
+      [
+        "10:45",
+        "Jackman & McRoss",
+        "Lemon Tart、Flat White、Pastries"
+      ],
+      [
+        "12:00",
+        "Salamanca Place",
+        "砂岩倉庫、廣場散步"
+      ],
+      [
+        "13:00",
+        "Hobart Waterfront / Fish Frenzy",
+        "海港散步、Seafood Chowder"
+      ],
+      [
+        "15:15",
+        "離開 Hobart city",
+        "前往機場加油與還車"
+      ],
+      [
+        "16:30",
+        "Hertz 還車",
+        "拍油量、里程、車況"
+      ],
+      [
+        "18:10",
+        "JQ708 HBA → MEL",
+        "19:35 抵達 Melbourne"
+      ],
+      [
+        "21:30",
+        "輕食晚餐",
+        "Melbourne Arrival Dinner Options：熱湯 / 甜點 / 外帶"
+      ]
+    ]
+  },
+  {
+    "label": "6/5",
+    "title": "Melbourne Classic Market + Coffee Day",
+    "city": "Melbourne",
+    "theme": "State Library、Good Measure、QVM、Pho、shopping、Future Life Check。",
+    "accommodation": "Bounce Melbourne",
+    "reminders": [
+      "住宿有早餐，Lune 改為 Backup，不排第二份早餐。",
+      "以步行 + Free Tram Zone 為主。",
+      "正式 shopping：Emporium、Melbourne Central、Bourke Street Mall。"
+    ],
+    "timeline": [
+      [
+        "09:00",
+        "State Library Victoria",
+        "La Trobe Reading Room"
+      ],
+      [
+        "10:15",
+        "Good Measure",
+        "Flat White、Mont Blanc"
+      ],
+      [
+        "10:55",
+        "Queen Victoria Market",
+        "白天市場"
+      ],
+      [
+        "12:15",
+        "Pho Thin / Pho Nom",
+        "熱湯河粉午餐"
+      ],
+      [
+        "14:45",
+        "CBD Shopping",
+        "Emporium / Melbourne Central"
+      ],
+      [
+        "17:15",
+        "Future Life Check",
+        "交通、藥局、超市、安全感"
+      ]
+    ]
+  },
+  {
+    "label": "6/6",
+    "title": "Puffing Billy + Penguin Wildlife Tour",
+    "city": "Melbourne / Phillip Island",
+    "theme": "GetYourGuide 一日遊，無附餐，早餐吃飽與保暖。",
+    "accommodation": "Bounce Melbourne",
+    "reminders": [
+      "09:20 前到 Regent Theatre 集合。",
+      "找紫色巴士或 Explore Australia Tours logo。",
+      "今日無附餐，帶水、能量棒、香蕉。",
+      "晚上 Phillip Island 很冷，早上就帶保暖用品。"
+    ],
+    "timeline": [
+      [
+        "08:15",
+        "Bounce 早餐",
+        "今日務必吃飽"
+      ],
+      [
+        "09:10",
+        "Bounce → Regent Theatre",
+        "191 Collins St"
+      ],
+      [
+        "09:35",
+        "Explore Australia pickup",
+        "找紫色巴士或 logo"
+      ],
+      [
+        "午餐",
+        "Railway Café / 自備輕食",
+        "依導遊停留時間"
+      ],
+      [
+        "傍晚",
+        "Penguin Parade Visitor Centre",
+        "先吃再看企鵝"
+      ],
+      [
+        "日落後",
+        "Penguin Parade",
+        "Penguins Plus"
+      ],
+      [
+        "回 Melbourne",
+        "Hot Soup Backup",
+        "Bowltiful / Udon Izakaya / Pho，太晚就回住宿休息"
+      ]
+    ]
+  },
+  {
+    "label": "6/7",
+    "title": "Great Ocean Road Day 1",
+    "city": "Melbourne → Port Campbell",
+    "theme": "SIXT 取車、大洋路、Lorne 午餐、Kennett River koala。",
+    "accommodation": "Loch Ard Motor Inn",
+    "accent": "Driving",
+    "reminders": [
+      "從 CBD / Docklands 開出來注意 tram、單行道與車道。",
+      "不硬排 Twelve Apostles sunset，安全抵達優先。"
+    ],
+    "timeline": [
+      [
+        "08:00",
+        "SIXT 取車",
+        "確認保險、車況拍照"
+      ],
+      [
+        "10:55",
+        "Great Ocean Road Chocolaterie",
+        "熱飲、上廁所、補給"
+      ],
+      [
+        "12:20",
+        "Split Point Lighthouse",
+        "Eagle Rock View"
+      ],
+      [
+        "13:40",
+        "Grand Pacific Hotel Lorne",
+        "午餐：Soup of the Day / Fish & Chips"
+      ],
+      [
+        "15:15",
+        "Kennett River",
+        "找野生 koala，沒看到往 Grey River Road"
+      ],
+      [
+        "17:45",
+        "Check-in Loch Ard Motor Inn",
+        "Port Campbell"
+      ],
+      [
+        "18:30",
+        "Waves Cafe",
+        "Seafood Chowder / Pumpkin Soup / Fish of the Day"
+      ]
+    ]
+  },
+  {
+    "label": "6/8",
+    "title": "Great Ocean Road Day 2",
+    "city": "Port Campbell → Geelong",
+    "theme": "Twelve Apostles、Shipwreck Coast、Colac 休息、Geelong Waterfront。",
+    "accommodation": "Holiday Inn & Suites Geelong",
+    "accent": "Driving",
+    "reminders": [
+      "Twelve Apostles 保留 Day 2，避免 6/7 摸黑折返。",
+      "Colac 午餐 + 廁所休息，下午走內陸往 Geelong。"
+    ],
+    "timeline": [
+      [
+        "08:15",
+        "Twelve Apostles / Gibson Steps",
+        "早晨重點"
+      ],
+      [
+        "09:30",
+        "Loch Ard Gorge precinct",
+        "視步道狀態"
+      ],
+      [
+        "10:20",
+        "Grassroots Deli Cafe",
+        "咖啡 / brunch"
+      ],
+      [
+        "11:45",
+        "The Grotto / London Bridge",
+        "Optional Stops Card：依天氣選 2–3 個"
+      ],
+      [
+        "12:30",
+        "Timboon Fine Ice Cream",
+        "小停靠 10–15 分鐘"
+      ],
+      [
+        "14:00",
+        "Colac Lunch + Toilet",
+        "熱食、咖啡、駕駛休息"
+      ],
+      [
+        "16:30",
+        "Holiday Inn Geelong Check-in",
+        "先放行李休息"
+      ],
+      [
+        "18:00",
+        "Geelong Waterfront",
+        "黃昏散步，不硬等夜景"
+      ],
+      [
+        "19:00",
+        "Wah Wah Gee",
+        "Seafood Chowder / Fish of the Day / Mussels"
+      ]
+    ]
+  },
+  {
+    "label": "6/9",
+    "title": "Geelong → Melbourne｜Return Car + Solo Night",
+    "city": "Geelong / Melbourne",
+    "theme": "先寄放行李、再還車、shopping、旅伴 21:50 CI58 返台、Cheryl solo night。",
+    "accommodation": "ibis Melbourne Central",
+    "reminders": [
+      "先到 ibis 寄放行李，再去 SIXT 還車。",
+      "SIXT 還車點：Shop 10, 99 Spencer St，Docklands；進 Care Park 後右轉。",
+      "旅伴 19:15 出發 MEL T2，21:50 CI58 回台灣。"
+    ],
+    "timeline": [
+      [
+        "09:00",
+        "Holiday Inn Geelong 早餐",
+        "確認所有行李與護照"
+      ],
+      [
+        "10:00",
+        "Geelong → ibis Melbourne Central",
+        "先卸行李"
+      ],
+      [
+        "11:30",
+        "加油 + 還車前拍照",
+        "油量、里程、四面車身"
+      ],
+      [
+        "13:00",
+        "SIXT return",
+        "Shop 10, 99 Spencer St"
+      ],
+      [
+        "14:00",
+        "Melbourne Central / Emporium",
+        "shopping"
+      ],
+      [
+        "17:30",
+        "Tonka",
+        "Butter Chicken、Garlic Naan、Masala Chai"
+      ],
+      [
+        "18:45",
+        "回 ibis 領行李",
+        "旅伴離隊流程"
+      ],
+      [
+        "19:15",
+        "旅伴出發去 MEL Airport",
+        "Uber XL / Maxi Taxi"
+      ],
+      [
+        "20:00",
+        "Cheryl solo night",
+        "小點心、熱飲、整理戰利品"
+      ]
+    ]
+  },
+  {
+    "label": "6/10",
+    "title": "Solo Melbourne Koala Souvenir + Coffee Walk",
+    "city": "Melbourne",
+    "theme": "State Library、South Melbourne Market、Be Marsupial、Fitzroy Coffee Walk、Winter Night Market。",
+    "accommodation": "ibis Melbourne Central",
+    "reminders": [
+      "採用新版：刪除 St Kilda / Acland Street，避免冬天海邊太冷與繞路。",
+      "South Melbourne Market 快速巡場，Be Marsupial 是主任務。",
+      "Winter Night Market 短版，20:30 前回 ibis。"
+    ],
+    "timeline": [
+      [
+        "10:00",
+        "State Library Victoria",
+        "室內、安全、經典景點"
+      ],
+      [
+        "11:30",
+        "South Melbourne Market",
+        "快速巡場，45–60 分鐘"
+      ],
+      [
+        "13:15",
+        "Be Marsupial",
+        "買 koala 娃娃主線"
+      ],
+      [
+        "14:30",
+        "Fitzroy Coffee Walk",
+        "Good Measure / Tone Coffee / Overlay 擇一"
+      ],
+      [
+        "16:30",
+        "回 CBD / ibis 休息",
+        "整理戰利品、充電、喝水"
+      ],
+      [
+        "18:00",
+        "Winter Night Market",
+        "熱食、亞洲小吃、熱甜點"
+      ],
+      [
+        "20:30",
+        "回 ibis",
+        "早點休息"
+      ]
+    ]
+  },
+  {
+    "label": "6/11",
+    "title": "Melbourne → Adelaide",
+    "city": "Melbourne / Adelaide",
+    "theme": "SkyBus、JQ772、J1/J2 到 ibis、輕鬆恢復、Coles 補給。",
+    "accommodation": "ibis Adelaide",
+    "accent": "Adelaide Start",
+    "reminders": [
+      "6/10 晚上先買 SkyBus one-way ticket 並截圖。",
+      "JQ772：手提 7 kg，托運 20 kg。",
+      "晚上 Coles Rundle Place 買 6/12 lunch pack。"
+    ],
+    "timeline": [
+      [
+        "07:20",
+        "ibis Melbourne Central → MEL T4",
+        "SkyBus 主選；行李重可短程 Uber 到 Southern Cross"
+      ],
+      [
+        "08:00",
+        "SkyBus → MEL T4",
+        "Melbourne City Express"
+      ],
+      [
+        "10:30",
+        "JQ772 MEL → ADL",
+        "11:30 抵達"
+      ],
+      [
+        "12:10",
+        "ADL Airport → ibis Adelaide",
+        "J1 / J2 bus 主選"
+      ],
+      [
+        "14:00",
+        "Check-in + rest",
+        "若順利才考慮 yoga"
+      ],
+      [
+        "16:45",
+        "Optional Restore Yoga",
+        "Human.Kind City Studio，optional"
+      ],
+      [
+        "18:15",
+        "Hecho en Mexico",
+        "tacos light dinner；胃不舒服改熱湯"
+      ],
+      [
+        "19:15",
+        "Coles Rundle Place",
+        "買 6/12 lunch pack"
+      ]
+    ]
+  },
+  {
+    "label": "6/12",
+    "title": "Gorge Wildlife Park + Koala Holding",
+    "city": "Adelaide / Cudlee Creek / Hahndorf",
+    "theme": "11:30 Koala Holding 固定，早上直奔動物園，下午再視體力去 Hahndorf。",
+    "accommodation": "ibis Adelaide",
+    "accent": "Koala",
+    "reminders": [
+      "General Admission 需要另外購買。",
+      "Koala Holding 11:30；Adelaide 預報 32°C 以上可能取消。",
+      "LinkSA 不到門口，下車後步行約 300 m 上坡到園區。"
+    ],
+    "timeline": [
+      [
+        "07:45",
+        "離開 ibis Adelaide",
+        "前往 Tea Tree Plaza 轉 LinkSA"
+      ],
+      [
+        "09:00",
+        "LinkSA 1102",
+        "Tea Tree Plaza → Cudlee Creek"
+      ],
+      [
+        "09:45",
+        "入園 / 買 General Admission",
+        "確認 Koala Holding 集合點"
+      ],
+      [
+        "11:30",
+        "Koala Holding",
+        "主線任務"
+      ],
+      [
+        "12:20",
+        "自備 lunch pack / Kiosk",
+        "先洗手"
+      ],
+      [
+        "13:00",
+        "慢慢看其他動物",
+        "wombat、Tasmanian devil、birds"
+      ],
+      [
+        "14:45",
+        "離園走回 Cudlee Creek Hall",
+        "不要壓線"
+      ],
+      [
+        "15:03",
+        "LinkSA 回 Tea Tree Plaza",
+        "15:35 抵達"
+      ],
+      [
+        "15:45",
+        "Tea Tree Plaza → ibis Adelaide",
+        "Adelaide Metro 回 CBD，補交通閉環"
+      ],
+      [
+        "17:30",
+        "Adelaide Pho / Phonatic / Ajisen",
+        "熱湯晚餐"
+      ],
+      [
+        "備案",
+        "Hahndorf Walking Route",
+        "若體力好改去 Hahndorf：The Haus、German Village Shop、German Cake Shop、Beerenberg"
+      ]
+    ]
+  },
+  {
+    "label": "6/13",
+    "title": "Adelaide City Slow Day",
+    "city": "Adelaide",
+    "theme": "Central Market、Art Gallery、Rundle Mall、藥妝、Coles 主採買。",
+    "accommodation": "ibis Adelaide",
+    "accent": "City Day",
+    "reminders": [
+      "Central Market 放早上，6/14 週日不開。",
+      "購物以靠住宿、少提重物為原則。",
+      "晚上整理行李：液體、膏狀、重物放托運。"
+    ],
+    "timeline": [
+      [
+        "08:30",
+        "Adelaide Central Market",
+        "早餐、咖啡、local food"
+      ],
+      [
+        "10:45",
+        "Art Gallery of South Australia",
+        "室內慢慢看"
+      ],
+      [
+        "12:30",
+        "Rundle Mall",
+        "購物、藥妝、書店、伴手禮"
+      ],
+      [
+        "14:30",
+        "回 ibis 放東西 / 休息",
+        "充電、喝水"
+      ],
+      [
+        "16:30",
+        "Chemist Warehouse Pulteney",
+        "藥妝、Grahams、簡單補給"
+      ],
+      [
+        "18:00",
+        "Dinner",
+        "熱食優先"
+      ],
+      [
+        "19:30",
+        "Coles Rundle Place",
+        "食品伴手禮與 6/14 補給"
+      ],
+      [
+        "20:30",
+        "回 ibis 整理行李",
+        "液體、膏狀、重物放托運"
+      ]
+    ]
+  },
+  {
+    "label": "6/14",
+    "title": "Final Shopping + Transfer Day",
+    "city": "Adelaide / Melbourne Airport",
+    "theme": "最後小補買、J1/J2 去 ADL、JQ775、MEL T4 領行李、T2 華航重托運、貴賓室。",
+    "accommodation": "ibis Adelaide checkout",
+    "accent": "Transfer Day",
+    "reminders": [
+      "JQ775：手提 7 kg，托運 30 kg。",
+      "JQ775 抵達 MEL T4 後，必須領 Jetstar 托運行李。",
+      "再推行李到 T2 International 找華航重新托運。"
+    ],
+    "timeline": [
+      [
+        "07:30",
+        "早餐",
+        "不跑遠"
+      ],
+      [
+        "08:45",
+        "最後小補買",
+        "Coles Rundle Place / Chemist Pulteney，只小補買"
+      ],
+      [
+        "09:45",
+        "回 ibis 整理行李",
+        "液體、膏狀放托運"
+      ],
+      [
+        "10:30",
+        "Check-out ibis Adelaide",
+        "不壓 11:00"
+      ],
+      [
+        "11:00",
+        "J1 / J2 bus → ADL Airport",
+        "目的地設 Adelaide Airport Passenger Terminal"
+      ],
+      [
+        "12:00",
+        "Jetstar bag drop / security",
+        "JQ775 13:40 起飛"
+      ],
+      [
+        "13:40",
+        "JQ775 ADL → MEL",
+        "15:30 抵達 MEL T4"
+      ],
+      [
+        "15:30",
+        "領 Jetstar 托運行李",
+        "不要直接去 T2"
+      ],
+      [
+        "16:15",
+        "T4 → T2 International",
+        "推行李移動"
+      ],
+      [
+        "17:15",
+        "China Airlines 重新托運",
+        "CI0058 MEL → TPE"
+      ],
+      [
+        "19:15",
+        "T2 lounge / dinner / rest",
+        "完成出境後再休息"
+      ],
+      [
+        "21:50",
+        "CI0058 MEL → TPE",
+        "6/15 05:15 抵達台灣"
+      ]
+    ]
+  }
 ];
 
 const warnings = [
@@ -37,7 +793,7 @@ const accommodationDetails = {
   "Holiday Inn & Suites Geelong": { name: "Holiday Inn & Suites Geelong by IHG", address: "Geelong, Victoria", checkIn: "6/8 傍晚", checkOut: "6/9 早上", notes: ["6/9 回 Melbourne 還車前的休息點", "還車前確認油量、里程、車況照片"], maps: "https://www.google.com/maps/search/?api=1&query=Holiday+Inn+Suites+Geelong" },
   "ibis Melbourne Central": { name: "ibis Melbourne Central", address: "399 Little Lonsdale Street, Melbourne CBD", checkIn: "6/9 afternoon", checkOut: "6/11 morning", notes: ["Cheryl solo stay", "6/10 獨旅日基地", "6/11 早上不要拖行李走到 Southern Cross；主選短程 Uber + SkyBus"], maps: "https://www.google.com/maps/search/?api=1&query=ibis+Melbourne+Central+399+Little+Lonsdale+Street" },
   "ibis Adelaide": { name: "ibis Adelaide", address: "122 Grenfell Street, Adelaide 5000", checkIn: "14:00 後", checkOut: "6/14 11:00 前", notes: ["Adelaide 6/11–6/14 base", "Rundle Mall / Coles / Chemist Warehouse 很近", "6/11 抵達若太早，先寄放行李", "6/14 退房後主選 J1 / J2 bus 去 ADL Airport"], maps: "https://www.google.com/maps/search/?api=1&query=ibis+Adelaide+122+Grenfell+Street" },
-  "ibis Adelaide checkout": { name: "ibis Adelaide｜Check-out Day", address: "122 Grenfell Street, Adelaide 5000", checkIn: "已入住", checkOut: "6/14 11:00 前", notes: ["退房前確認護照、充電器、藥品、屁屁膏、Usborne 書", "膏狀與液體放托運", "上午只做小補買，不大採買", "主選 J1 / J2 bus，若行李太重或時間不順改 Uber"], maps: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport" }
+  "ibis Adelaide checkout": { name: "ibis Adelaide｜Check-out Day", address: "122 Grenfell Street, Adelaide 5000", checkIn: "已入住", checkOut: "6/14 11:00 前", notes: ["退房前確認護照、充電器、藥品、屁屁膏、Usborne 書", "膏狀與液體放托運", "上午只做小補買，不大採買", "主選 J1 / J2 bus，若行李太重或時間不順改 Uber"], maps: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport+Passenger+Terminal" }
 };
 
 const links = [
@@ -56,7 +812,7 @@ const googleRoutes = [
   { label: "6/12 ibis Adelaide → Gorge Wildlife Park", city: "Google Maps", url: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Gorge+Wildlife+Park" },
   { label: "6/13 ibis Adelaide → Central Market", city: "Google Maps", url: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Central+Market" },
   { label: "6/13 Adelaide → Hahndorf", city: "Google Maps", url: "https://www.google.com/maps/dir/?api=1&origin=Adelaide+SA&destination=Hahndorf+SA" },
-  { label: "6/14 ibis Adelaide → ADL Airport", city: "Google Maps", url: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport" }
+  { label: "6/14 ibis Adelaide → ADL Airport", city: "Google Maps", url: "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport+Passenger+Terminal" }
 ];
 
 const dailyRouteLinks = {
@@ -513,7 +1269,7 @@ const timelineNavigation = {
     "mode": "Bus",
     "icon": "directions_bus",
     "label": "ibis Adelaide → ADL Airport",
-    "url": "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport&travelmode=transit",
+    "url": "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=Adelaide+Airport+Passenger+Terminal&travelmode=transit",
     "note": "主選 J1 / J2；行李太重或時間不順改 Uber。"
   },
   "6/14|T4 → T2 International": {
@@ -580,6 +1336,15 @@ const optionCards = {
       { level: "🟡 Backup", title: "DoDee Paidang", note: "泰式湯麵，適合想吃熱辣湯。", url: "https://www.google.com/maps/search/?api=1&query=DoDee+Paidang+Little+Collins+Melbourne" },
       { level: "🟠 Sweet", title: "Brunetti Oro Flinders Lane", note: "甜點、咖啡、輕食；若不想吃正餐。", url: "https://www.google.com/maps/search/?api=1&query=Brunetti+Oro+Flinders+Lane" },
       { level: "🔴 Tired", title: "Coles / Convenience takeaway", note: "買熱飲或簡單外帶回房。", url: "https://www.google.com/maps/search/?api=1&query=Coles+near+Bounce+Melbourne" }
+    ]
+  },
+  "6/6|Hot Soup Backup": {
+    title: "🍜 Hot Soup Backup",
+    intro: "看完企鵝很冷，回 Melbourne 後以熱食或直接休息為主。",
+    options: [
+      { level: "🟢 Best", title: "Bowltiful Lanzhou Beef Noodle", note: "熱湯麵，暖胃。", url: "https://www.google.com/maps/search/?api=1&query=Bowltiful+Lanzhou+Beef+Noodle+Melbourne+CBD" },
+      { level: "🟡 Backup", title: "Udon Izakaya Maedaya", note: "熱烏龍 / 居酒屋熱食。", url: "https://www.google.com/maps/search/?api=1&query=Udon+Izakaya+Maedaya+Melbourne" },
+      { level: "⚪ Tired", title: "Go back to Bounce", note: "太晚或太累就直接休息。" }
     ]
   },
   "6/8|The Grotto / London Bridge": {
@@ -655,6 +1420,15 @@ Object.assign(timelineNavigation, {
 
   "6/7|Waves Cafe": { mode: "Walk", icon: "restaurant", label: "Loch Ard Motor Inn → Waves Cafe", url: "https://www.google.com/maps/dir/?api=1&origin=Loch+Ard+Motor+Inn+Port+Campbell&destination=Waves+Cafe+Bar+and+Restaurant+Port+Campbell&travelmode=walking", note: "Seafood Chowder / Pumpkin Soup / Fish of the Day。" },
 
+  "6/6|Hot Soup Backup": {
+    title: "🍜 Hot Soup Backup",
+    intro: "看完企鵝很冷，回 Melbourne 後以熱食或直接休息為主。",
+    options: [
+      { level: "🟢 Best", title: "Bowltiful Lanzhou Beef Noodle", note: "熱湯麵，暖胃。", url: "https://www.google.com/maps/search/?api=1&query=Bowltiful+Lanzhou+Beef+Noodle+Melbourne+CBD" },
+      { level: "🟡 Backup", title: "Udon Izakaya Maedaya", note: "熱烏龍 / 居酒屋熱食。", url: "https://www.google.com/maps/search/?api=1&query=Udon+Izakaya+Maedaya+Melbourne" },
+      { level: "⚪ Tired", title: "Go back to Bounce", note: "太晚或太累就直接休息。" }
+    ]
+  },
   "6/8|The Grotto / London Bridge": { mode: "Drive", icon: "waves", label: "Grassroots → London Bridge / The Grotto", url: "https://www.google.com/maps/dir/?api=1&origin=Grassroots+Deli+Cafe+Port+Campbell&destination=London+Bridge+Great+Ocean+Road&waypoints=The+Grotto+Victoria&travelmode=driving", note: "展開 Optional Stops Card；不要硬收集到天黑。" },
   "6/8|Timboon Fine Ice Cream": { mode: "Drive", icon: "icecream", label: "London Bridge → Timboon Fine Ice Cream", url: "https://www.google.com/maps/dir/?api=1&origin=London+Bridge+Great+Ocean+Road&destination=Timboon+Fine+Ice+Cream&travelmode=driving", note: "小停靠 10–15 分鐘，不是午餐。" },
   "6/8|Colac Lunch + Toilet": { mode: "Drive", icon: "restaurant", label: "Timboon → Colac lunch + toilet", url: "https://www.google.com/maps/dir/?api=1&origin=Timboon+Fine+Ice+Cream&destination=Colac+VIC&travelmode=driving", note: "熱食、廁所、駕駛休息。" },
@@ -698,6 +1472,18 @@ Object.assign(timelineNavigation, {
 
 
 
+// v14.3 Full QA：補齊 6/2–6/10 討論後的最終行程導航與缺漏項。
+Object.assign(timelineNavigation, {
+  "6/4|Check-out Little Island Apartments": { mode: "Hotel", icon: "home", label: "Little Island Apartments checkout", note: "10:00 前退房；確認行李、充電器與停車區。" },
+  "6/4|離開 Hobart city": { mode: "Drive", icon: "directions_car", label: "Fish Frenzy / Waterfront → Hobart Airport", url: "https://www.google.com/maps/dir/?api=1&origin=Fish+Frenzy+Hobart&destination=Hobart+Airport&travelmode=driving", note: "15:15–15:30 離開市區，預留加油與還車入口時間。" },
+  "6/5|Good Measure": { mode: "Walk", icon: "local_cafe", label: "State Library → Good Measure", url: "https://www.google.com/maps/dir/?api=1&origin=State+Library+Victoria&destination=Good+Measure+Melbourne&travelmode=walking", note: "Flat White + Mont Blanc；住宿已附早餐，不當第二份早餐。" },
+  "6/5|Queen Victoria Market": { mode: "Walk / Tram", icon: "tram", label: "Good Measure → Queen Victoria Market", url: "https://www.google.com/maps/dir/?api=1&origin=Good+Measure+Melbourne&destination=Queen+Victoria+Market&travelmode=transit", note: "白天市場，快速逛熟食與伴手禮。" },
+  "6/6|回 Melbourne": { mode: "Tour bus", icon: "directions_bus", label: "Tour return → Melbourne CBD", note: "依導遊安排回市區；若很冷或餓，展開 Hot Soup Backup。" },
+  "6/8|Wah Wah Gee": { mode: "Walk", icon: "restaurant", label: "Geelong Waterfront → Wah Wah Gee", url: "https://www.google.com/maps/dir/?api=1&origin=Geelong+Waterfront&destination=Wah+Wah+Gee+Geelong&travelmode=walking", note: "Seafood Chowder / Fish of the Day / Mussels；客滿就改 Waterfront 附近熱食。" },
+  "6/9|SIXT return": { mode: "Drive", icon: "directions_car", label: "Petrol / ibis → SIXT Melbourne City return", url: "https://www.google.com/maps/search/?api=1&query=SIXT+Car+Hire+Melbourne+City+99+Spencer+Street+car+return", note: "Shop 10, 99 Spencer St；進 Care Park 後右轉找 SIXT car park。" }
+});
+
+
 const todayMapLinks = {
   "6/1": "https://www.google.com/maps/dir/?api=1&origin=Changhua+HSR+Station&destination=Taiwan+Taoyuan+International+Airport+Terminal+2&waypoints=Taoyuan+HSR+Station&travelmode=transit",
   "6/2": "https://www.google.com/maps/dir/?api=1&origin=Melbourne+Airport+Terminal+2&destination=Little+Island+Apartments+3+Scott+Street+Hobart&waypoints=Melbourne+Airport+Terminal+4%7CHobart+Airport%7CEastlands+Shopping+Centre+Rosny+Park&travelmode=driving",
@@ -707,7 +1493,7 @@ const todayMapLinks = {
   "6/6": "https://www.google.com/maps/dir/?api=1&origin=Bounce+Melbourne+250+Flinders+Street&destination=Regent+Theatre+191+Collins+Street+Melbourne&travelmode=walking",
   "6/7": "https://www.google.com/maps/dir/?api=1&origin=SIXT+Car+Hire+Melbourne+City+99+Spencer+Street&destination=Loch+Ard+Motor+Inn+Port+Campbell&waypoints=Great+Ocean+Road+Chocolaterie+and+Ice+Creamery%7CSplit+Point+Lighthouse%7CGrand+Pacific+Hotel+Lorne%7CKennett+River+Victoria&travelmode=driving",
   "6/8": "https://www.google.com/maps/dir/?api=1&origin=Loch+Ard+Motor+Inn+Port+Campbell&destination=Holiday+Inn+and+Suites+Geelong&waypoints=Twelve+Apostles+Visitor+Facility%7CLoch+Ard+Gorge%7CGrassroots+Deli+Cafe+Port+Campbell%7CLondon+Bridge+Great+Ocean+Road%7CTimboon+Fine+Ice+Cream%7CColac+VIC%7CGeelong+Waterfront%7CWah+Wah+Gee+Geelong&travelmode=driving",
-  "6/9": "https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+and+Suites+Geelong&destination=ibis+Melbourne+Central&waypoints=SIXT+Car+Hire+Melbourne+City+99+Spencer+Street%7CMelbourne+Central%7CEmporium+Melbourne%7CTonka+Melbourne&travelmode=driving",
+  "6/9": "https://www.google.com/maps/dir/?api=1&origin=Holiday+Inn+and+Suites+Geelong&destination=ibis+Melbourne+Central&waypoints=ibis+Melbourne+Central+399+Little+Lonsdale+Street%7Cpetrol+station+near+99+Spencer+Street+Docklands%7CSIXT+Car+Hire+Melbourne+City+99+Spencer+Street%7CMelbourne+Central%7CEmporium+Melbourne%7CTonka+Melbourne&travelmode=driving",
   "6/10": "https://www.google.com/maps/dir/?api=1&origin=ibis+Melbourne+Central&destination=ibis+Melbourne+Central&waypoints=State+Library+Victoria%7CSouth+Melbourne+Market%7CBe+Marsupial+Melbourne%7CFitzroy+VIC%7CQueen+Victoria+Market&travelmode=transit",
   "6/11": "https://www.google.com/maps/dir/?api=1&origin=ibis+Melbourne+Central&destination=ibis+Adelaide+122+Grenfell+Street&waypoints=Melbourne+Airport+Terminal+4%7CAdelaide+Airport+Passenger+Terminal&travelmode=transit",
   "6/12": "https://www.google.com/maps/dir/?api=1&origin=ibis+Adelaide+122+Grenfell+Street&destination=ibis+Adelaide+122+Grenfell+Street&waypoints=Tea+Tree+Plaza+Interchange%7CGorge+Wildlife+Park%7CCudlee+Creek%7CTea+Tree+Plaza+Interchange&travelmode=transit",
